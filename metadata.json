@@ -1,0 +1,6 @@
+{
+  "name": "Matheus Willamis | Imóveis em Olinda e Região",
+  "description": "Portal imobiliário de alto padrão de Matheus Willamis (CRECI 24.231). Especialista em compra, venda e locação de imóveis e empreendimentos em Olinda e região.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

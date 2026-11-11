@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Default safety catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Connection test document
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Public Site Settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Public properties
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Empreendimentos
+    match /empreendimentos/{empreendimentoId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Landing pages
+    match /landingPages/{landingId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Leads & Visit requests
+    match /leads/{leadId} {
+      // Public visitors can submit a lead request with basic validation
+      allow create: if request.resource.data.name is string 
+                    && request.resource.data.name.size() > 1 
+                    && request.resource.data.name.size() <= 150
+                    && request.resource.data.phone is string 
+                    && request.resource.data.phone.size() >= 8
+                    && request.resource.data.phone.size() <= 30;
+      // Only authenticated admin can read, update status, or delete leads
+      allow read, update, delete: if isSignedIn();
+    }
+  }
+}

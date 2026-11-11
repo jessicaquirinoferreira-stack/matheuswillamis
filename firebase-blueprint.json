@@ -1,0 +1,142 @@
+{
+  "entities": {
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Configurações gerais do site institucional de Matheus Willamis Corretor",
+      "type": "object",
+      "properties": {
+        "brokerName": { "type": "string" },
+        "creci": { "type": "string" },
+        "bio": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "instagram": { "type": "string" },
+        "regions": { "type": "array" },
+        "heroHeadline": { "type": "string" },
+        "heroSubheadline": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Property": {
+      "title": "Property",
+      "description": "Imóveis à venda ou locação em Olinda e região",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "code": { "type": "string" },
+        "transactionType": { "type": "string" },
+        "propertyType": { "type": "string" },
+        "price": { "type": "number" },
+        "priceFormatted": { "type": "string" },
+        "locationNeighborhood": { "type": "string" },
+        "locationCity": { "type": "string" },
+        "bedrooms": { "type": "number" },
+        "suites": { "type": "number" },
+        "bathrooms": { "type": "number" },
+        "parkingSpaces": { "type": "number" },
+        "totalArea": { "type": "number" },
+        "description": { "type": "string" },
+        "features": { "type": "array" },
+        "images": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "status": { "type": "string" },
+        "empreendimentoId": { "type": "string" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["title", "slug", "transactionType", "propertyType", "locationNeighborhood"]
+    },
+    "Empreendimento": {
+      "title": "Empreendimento",
+      "description": "Edifícios e condomínios clubes gerenciados no portal",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "description": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "city": { "type": "string" },
+        "status": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "gallery": { "type": "array" },
+        "unitsSummary": { "type": "string" },
+        "differentialItems": { "type": "array" },
+        "featured": { "type": "boolean" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "slug", "neighborhood", "city"]
+    },
+    "LandingPage": {
+      "title": "LandingPage",
+      "description": "Landing pages premium de alta conversão para oportunidades selecionadas",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "title": { "type": "string" },
+        "headline": { "type": "string" },
+        "subheadline": { "type": "string" },
+        "targetType": { "type": "string" },
+        "targetId": { "type": "string" },
+        "heroImage": { "type": "string" },
+        "badgeText": { "type": "string" },
+        "callToAction": { "type": "string" },
+        "bullets": { "type": "array" },
+        "showPrice": { "type": "boolean" },
+        "customPrice": { "type": "string" },
+        "contactFormTitle": { "type": "string" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["slug", "title", "headline"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Contatos e solicitações de visitas geradas no site",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "interestType": { "type": "string" },
+        "targetId": { "type": "string" },
+        "targetTitle": { "type": "string" },
+        "preferredDate": { "type": "string" },
+        "preferredTime": { "type": "string" },
+        "preferredShift": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "originUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "phone"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": "SiteSettings",
+      "description": "Configurações públicas e institucionais do site"
+    },
+    "/properties/{propertyId}": {
+      "schema": "Property",
+      "description": "Catálogo público de imóveis"
+    },
+    "/empreendimentos/{empreendimentoId}": {
+      "schema": "Empreendimento",
+      "description": "Catálogo de edifícios e condomínios"
+    },
+    "/landingPages/{landingId}": {
+      "schema": "LandingPage",
+      "description": "Landing pages especiais de alta conversão"
+    },
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Leads recebidos de agendamento e interesse de compra/locação"
+    }
+  }
+}
